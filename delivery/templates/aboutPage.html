@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block sidebar %}
+    <a href="/about/activity/" class="w3-bar-item w3-button">Деятельность компании</a>
+    <a href="/about/news/" class="w3-bar-item w3-button">Новости</a>
+    <a href="/about/vacancy/" class="w3-bar-item w3-button">Вакансии</a>
+    <a href="/about/partner/" class="w3-bar-item w3-button">Партнеры</a>
+{% endblock %}
+{% block head %}
+<style>
+    P {
+    text-indent: 1.5em;
+    font-size: 16px;
+    }
+</style>
+{% endblock %}
+
+{% block title %}О компании{% endblock %}
+
+
+{% block body %}
+    <p>Данный сервис предназначен для регистрации курьерских доставок. После заполнения формы на доставку и подтверждения
+        курьер связывается с получателем по телефону для уточнения веремени доставки.</p>
+    <p>На сайте есть функция регистрации. Авторизованные пользователи могут просматривать историю своих операций</p>
+{% endblock %}

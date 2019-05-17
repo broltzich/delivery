@@ -1,0 +1,43 @@
+{% extends 'accountPage.html' %}
+
+
+
+
+
+
+
+
+{% block body %}
+<p>Информация о пользователе:</p><br>
+<form method="post">
+    {% csrf_token %}
+    <ul class="list-group">
+
+        <li class="list-group-item">Логин: {{ user.username }}</li>
+        <li class="list-group-item">Почта: {{ user.email }}</li>
+
+        <!--
+        <li class="list-group-item">Имя: {{ user.first_name }}</li>
+        <li class="list-group-item">Фамилия: {{ user.last_name }}</li>
+
+
+        <li class="list-group-item">
+            <label for="{{ form.id_for_label }}">Логин</label>
+            {{ form.username }}
+        </li>
+        <li class="list-group-item">
+            <label for="{{ form.id_for_label }}">Почта</label>
+            {{ form.email }}
+        </li>
+        <li class="list-group-item">
+            <label for="{{ form.id_for_label }}">Имя</label>
+            {{ form.first_name }}
+        </li>
+        <li class="list-group-item">
+            <label for="{{ form.id_for_label }}">Фамилия</label>
+            {{ form.last_name }}
+        </li>
+        -->
+    </ul>
+</form>
+{% endblock %}

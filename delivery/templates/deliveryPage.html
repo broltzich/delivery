@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Доставка{% endblock %}
+
+
+{% block head %}
+     <script type="text/javascript"
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoZii68pPfoURWPgGJ7OQP-D7GRaUUvRY&sensor=false">
+    </script>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+{% endblock %}
+
+
+{% block body %}
+    <p>Указать на карте:</p>
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(55.7445626,37.6291662),
+          zoom: 10.5,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+
+
+      }
+      google.maps.event.addDomListener(window, "load", initialize);
+    </script>
+    <div id="map-canvas" style="height: 300px; width: 600px;"></div>
+    <!--
+        <div id="map"></div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoZii68pPfoURWPgGJ7OQP-D7GRaUUvRY&callback=initMap"
+        async defer></script>
+    -->
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="panel panel-default">
+            <div class="panel-heading">Откуда</div>
+            <div class="panel-body">
+                <p>
+                    {{ form.from_address.errors }}
+                    <label for="{{ form.id_for_label }}">Адрес</label>
+                    {{ form.from_address }}
+                </p>
+                <p>
+                    {{ form.from_phone.errors }}
+                    <label for="{{ form.id_for_label }}">Телефон</label>
+                    {{ form.from_phone }}
+                </p>
+                <p>
+                    {{ form.size.errors }}
+                    <label for="{{ form.id_for_label }}">Размер посылки</label>
+                    {{ form.size }}
+                </p>
+                <p>
+                    {{ form.type.errors }}
+                    <label for="{{ form.id_for_label }}">Тип доставки</label>
+                    {{ form.type }}
+                </p>
+                <p>
+                    {{ form.description.errors }}
+                    <label for="{{ form.id_for_label }}">Описание</label>
+                    {{ form.description }}
+                </p>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Куда</div>
+            <div class="panel-body">
+                <p>
+                    {{ form.to_address.errors }}
+                    <label for="{{ form.id_for_label }}">Адрес</label>
+                    {{ form.to_address }}
+                </p>
+                <p>
+                    {{ form.to_phone.errors }}
+                    <label for="{{ form.id_for_label }}">Телефон</label>
+                    {{ form.to_phone }}
+                </p>
+                <p>
+                    {{ form.delivery_date.errors }}
+                    <label for="{{ form.id_for_label }}">Когда доставить</label>
+                    {{ form.delivery_date }}
+                </p>
+            </div>
+        </div>
+        <button type="submit" class="save btn btn-default">Подтвердить</button>
+    </form>
+{% endblock %}
