@@ -30,7 +30,7 @@ class Post(models.Model):
 		("MO", "main office")
 	)
 	address = models.CharField(max_length=150)
-	phone = models.CharField(max_length=9, blank=True, default='')
+	phone = models.CharField(max_length=1, blank=True, default='')
 	type = models.CharField(max_length=50, choices=TYPE_CHOICES, default='WH')
 	total_space = models.CharField(max_length=30, blank=True, default='')
 
@@ -57,15 +57,11 @@ class Trip(models.Model):
 		("C", "common"),
 		("E", "express"),
 	)
-	trip_date = models.DateField
+	start_time = models.DateField()
+	end_time = models.DateField()
 	trip_type = models.CharField(max_length=20, choices=TRIP_TYPE_CHOICES, default='C')
 	pk_vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
 	pk_courier = models.ForeignKey(Worker, on_delete=models.CASCADE)
-
-
-class Profile(models.Model):
-	location = models.CharField(max_length=150, blank=True, default='')
-	pk_user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
 class Package(models.Model):
